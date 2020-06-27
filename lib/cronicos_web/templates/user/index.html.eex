@@ -1,0 +1,37 @@
+<h1>Usuarios</h1>
+
+<span><%= link "Nuevo Usuario", to: Routes.user_path(@conn, :new), class: "btn btn-primary float-right" %></span>
+<br>
+<br>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>DNI</th>
+      <th>Rol</th>
+      <th>Plan</th>
+      <th>Observacion</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.dni %></td>
+      <td><%= user.role %></td>
+      <td><%= user.plan %></td>
+      <td><%= user.observation %></td>
+
+      <td>
+        <span><%= link "Mostrar", to: Routes.user_path(@conn, :show, user), class: "btn btn-primary" %></span>
+        <span><%= link "Editar", to: Routes.user_path(@conn, :edit, user), class: "btn btn-primary" %></span>
+        <span><%= link "Borrar", to: Routes.user_path(@conn, :delete, user), class: "btn btn-danger", method: :delete, data: [confirm: "Esta seguro?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

@@ -12,7 +12,7 @@
 
           <div class="form-group">
             <%= label f, Pow.Ecto.Schema.user_id_field(@changeset), "Correo Electronico:" %>
-            <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "form-control", placeholder: "Ingrese email" %>
+            <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "form-control", placeholder: "Ingrese email"%>
             <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
           </div>
 

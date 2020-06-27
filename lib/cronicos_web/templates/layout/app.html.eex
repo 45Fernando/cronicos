@@ -11,7 +11,7 @@
   <body>
   <%= if Pow.Plug.current_user(@conn) do %>
       <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
           <!-- Brand -->
           <a class="navbar-brand h1" href="#">Cronicos</a>
 
@@ -23,11 +23,11 @@
           <!-- Navbar links -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <li class="nav-item">
+                <%= link "Afiliados", to: Routes.user_path(@conn, :index), class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <%= link "Medicamentos", to: Routes.medicamento_path(@conn, :index), class: "nav-link" %>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,9 +40,6 @@
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-              </li>
             </ul>
 
             <!-- busqueda -->
@@ -50,12 +47,11 @@
               <input class="form-control mr-sm-2" type="search" placeholder="Usuario" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
-            <br>
-            <!-- Nuevo afiliado -->
-            <a class= "btn btn-primary mx-2" href= ""> Nuevo Usuario</a>
+            <br>           
 
+            <!-- Para desloguearse -->
             <%= if Pow.Plug.current_user(@conn) do %>
-              <span><%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete %></span>
+              <span><%= link "Salir", to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "btn btn-primary mx-2" %></span>
             <% end %>
             
           </div>
@@ -64,10 +60,12 @@
     <% end %>
 
     <main role="main" class="container">
+      <!--
       <%= if Pow.Plug.current_user(@conn) do %>
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <% end %>
+      -->
       <%= render @view_module, @view_template, assigns %>
     </main>
 

@@ -39,6 +39,8 @@ defmodule CronicosWeb.Router do
     pipe_through [:browser, :protected]
 
     get "/", PageController, :index
+    resources "/medicamentos", MedicamentoController
+    resources "/users", UserController
   end
 
   scope "/", Pow.Phoenix, as: "pow" do

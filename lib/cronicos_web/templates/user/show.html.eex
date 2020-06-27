@@ -1,0 +1,42 @@
+<h1>Usuario</h1>
+
+<ul class="list-group">
+
+  <li class="list-group-item">
+    <strong>Nombre:</strong>
+    <%= @user.name %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Correo:</strong>
+    <%= @user.email %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>DNI:</strong>
+    <%= @user.dni %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Rol:</strong>
+    <%= @user.role %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Plan:</strong>
+    <%= @user.plan %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Observacion:</strong>
+    <%= @user.observation %>
+  </li>
+
+</ul>
+
+<br>
+<br>
+
+
+<span><%= link "Editar", to: Routes.user_path(@conn, :edit, @user), class: "btn btn-primary" %></span>
+<span><%= link "Volver", to: Routes.user_path(@conn, :index), class: "btn btn-secondary" %></span>
