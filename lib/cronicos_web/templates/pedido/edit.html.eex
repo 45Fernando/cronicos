@@ -1,0 +1,5 @@
+<h1>Editar Pedido</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.pedido_path(@conn, :update, @pedido)) %>
+
+<span><%= link "Back", to: Routes.pedido_path(@conn, :index), class: "btn btn-secondary" %></span>

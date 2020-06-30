@@ -28,8 +28,14 @@ defmodule CronicosWeb.UserController do
   end
 
   def show(conn, %{"id" => id}) do
+    medicamentos = Cronicos.Medicamentos.list_medicamentos()
+                   |> Enum.map(&{Enum.join([&1.nombre, &1.presentacion], " ") , &1.id})
+
+    pedidos = Users.get_user_pedidos!(id).pedidos
+              |> Enum.sort_by(&(&1.inserted_at), {:desc, NaiveDateTime})
+
     user = Users.get_user!(id)
-    render(conn, "show.html", user: user)
+    render(conn, "show.html", user: user, medicamentos: medicamentos, pedidos: pedidos)
   end
 
   def edit(conn, %{"id" => id}) do

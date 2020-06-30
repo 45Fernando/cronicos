@@ -7,6 +7,8 @@ defmodule Cronicos.Medicamentos.Medicamento do
     field :nombre, :string
     field :presentacion, :string
 
+    has_many(:pedidos, Cronicos.Pedidos.Pedido, foreign_key: :medicamento_id)
+
     timestamps()
   end
 

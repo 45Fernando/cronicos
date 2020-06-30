@@ -11,6 +11,8 @@ defmodule Cronicos.Users.User do
 
     pow_user_fields()
 
+    has_many(:pedidos, Cronicos.Pedidos.Pedido, foreign_key: :user_id)
+
     timestamps()
   end
 

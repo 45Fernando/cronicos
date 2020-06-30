@@ -41,6 +41,7 @@ defmodule CronicosWeb.Router do
     get "/", PageController, :index
     resources "/medicamentos", MedicamentoController
     resources "/users", UserController
+    resources "/pedidos", PedidoController
   end
 
   scope "/", Pow.Phoenix, as: "pow" do

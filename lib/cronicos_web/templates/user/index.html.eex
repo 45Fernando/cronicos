@@ -1,4 +1,4 @@
-<h1>Usuarios</h1>
+<h1>Afiliados</h1>
 
 <span><%= link "Nuevo Usuario", to: Routes.user_path(@conn, :new), class: "btn btn-primary float-right" %></span>
 <br>

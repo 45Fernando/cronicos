@@ -1,42 +1,94 @@
-<h1>Usuario</h1>
+<div class="container">
+  <div class="row align-items-start mb-4">
+    <div class="col">
+      <h2>Afiliado</h2>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>Nombre</th>
+              <th>DNI</th>
+              <th>Plan</th>
+              <th>Observacion</th>
 
-<ul class="list-group">
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @user.name %></td>
+              <td><%= @user.dni %></td>
+              <td><%= @user.plan %></td>
+              <td><%= @user.observation %></td>
+            </tr>
+          </tbody>
+        </table>
 
-  <li class="list-group-item">
-    <strong>Nombre:</strong>
-    <%= @user.name %>
-  </li>
+        <span><%= link "Editar", to: Routes.user_path(@conn, :edit, @user), class: "btn btn-primary" %></span>
+        <!-- <span><%= link "Agregar Cronico", to: Routes.pedido_path(@conn, :new, user_name: @user.name), class: "btn btn-primary" %></span> -->
+        <span><%= link "Volver", to: Routes.user_path(@conn, :index), class: "btn btn-secondary" %></span>
+    </div>
+    <div class="col">
+      <h2>Agregar Cronico</h2>
+      <%= form_for @conn, Routes.pedido_path(@conn, :create), [ method: :post] , fn f ->%>
+        <%= hidden_input f, :user_id, value: @user.id %>
 
-  <li class="list-group-item">
-    <strong>Correo:</strong>
-    <%= @user.email %>
-  </li>
+        <div class="form-group">
+          <%= select f, :medicamento_id, @medicamentos %>
+        </div>
 
-  <li class="list-group-item">
-    <strong>DNI:</strong>
-    <%= @user.dni %>
-  </li>
+        <div class="form-group">
+          <%= label f, :posologia %>
+          <%= text_input f, :posologia %>
+          <%= error_tag f, :posologia %>
+        </div>
 
-  <li class="list-group-item">
-    <strong>Rol:</strong>
-    <%= @user.role %>
-  </li>
+        <div class="form-group">
+          <%= label f, :porcentaje %>
+          <%= text_input f, :porcentaje %>
+          <%= error_tag f, :porcentaje %>
+        </div>
+          <%= submit "Agregar Cronico", class: "btn btn-primary" %>    
+      <% end%> 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Creado</th>
+            <th>Medicamento</th>
+            <th>Presentacion</th>
+            <th>Posologia</th>
+            <th>Porcentaje</th>      
+            <th>Retirado</th>
 
-  <li class="list-group-item">
-    <strong>Plan:</strong>
-    <%= @user.plan %>
-  </li>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <%= for pedido <- @pedidos do %>
+          <tr>
+            <td><%= pedido.inserted_at %></td>
+            <td><%= pedido.medicamentos.nombre %></td>
+            <td><%= pedido.medicamentos.presentacion %></td>
+            <td><%= pedido.posologia %></td>
+            <td><%= pedido.porcentaje %></td>
+            <td><%= if pedido.retirado do %>
+                  SI
+                <% else %>
+                  NO
+                <% end %>
+            </td>     
 
-  <li class="list-group-item">
-    <strong>Observacion:</strong>
-    <%= @user.observation %>
-  </li>
+            <td>
+              <span><%= link "Borrar", to: Routes.pedido_path(@conn, :delete, pedido), class: "btn btn-danger", method: :delete, data: [confirm: "Esta seguro?"] %></span>
+            </td> 
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>    
+  </div>
+</div>
 
-</ul>
-
-<br>
-<br>
-
-
-<span><%= link "Editar", to: Routes.user_path(@conn, :edit, @user), class: "btn btn-primary" %></span>
-<span><%= link "Volver", to: Routes.user_path(@conn, :index), class: "btn btn-secondary" %></span>

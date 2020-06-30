@@ -17,6 +17,7 @@ defmodule Cronicos.Users do
     Repo.all(User)
   end
 
+
   @doc """
   Gets a single user.
   Raises `Ecto.NoResultsError` if the User does not exist.
@@ -27,6 +28,11 @@ defmodule Cronicos.Users do
       ** (Ecto.NoResultsError)
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+  def get_user_pedidos!(id) do
+    Repo.get!(User, id)
+    |> Repo.preload(pedidos: [:medicamentos])
+  end
 
   @doc """
   Creates a user.

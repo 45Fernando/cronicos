@@ -1,0 +1,27 @@
+<h1>Medicamento</h1>
+
+<ul class="list-group">
+
+  <li class="list-group-item">
+    <strong>Nombre:</strong>
+    <%= @medicamento.nombre %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Drogas:</strong>
+    <%= @medicamento.drogas %>
+  </li>
+
+  <li class="list-group-item">
+    <strong>Presentacion:</strong>
+    <%= @medicamento.presentacion %>
+  </li>
+
+</ul>
+
+<br>
+<br>
+
+
+<span><%= link "Editar", to: Routes.medicamento_path(@conn, :edit, @medicamento), class: "btn btn-primary" %></span>
+<span><%= link "Volver", to: Routes.medicamento_path(@conn, :index), class: "btn btn-secondary" %></span>
