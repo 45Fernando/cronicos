@@ -7,19 +7,19 @@
 
   <div class="form-group">
     <%= label f, :nombre %>
-    <%= text_input f, :nombre %>
+    <%= text_input f, :nombre, class: "form-control form-control-sm" %>
     <%= error_tag f, :nombre %>
   </div>
 
   <div class="form-group">
     <%= label f, :drogas %>
-    <%= text_input f, :drogas %>
+    <%= text_input f, :drogas, class: "form-control form-control-sm" %>
     <%= error_tag f, :drogas %>
   </div>
 
   <div class="form-group">
     <%= label f, :presentacion %>
-    <%= text_input f, :presentacion %>
+    <%= text_input f, :presentacion, class: "form-control form-control-sm" %>
     <%= error_tag f, :presentacion %>
   </div>
 

@@ -3,7 +3,7 @@
 <span><%= link "Nuevo Medicamento", to: Routes.medicamento_path(@conn, :new), class: "btn btn-primary float-right" %></span>
 <br>
 <br>
-<table class="table">
+<table class="table table-bordered table-hover table-sm">
   <thead class="thead-dark">
     <tr>
       <th>Nombre</th>
@@ -21,9 +21,9 @@
       <td><%= medicamento.presentacion %></td>
 
       <td>
-        <span><%= link "Mostrar", to: Routes.medicamento_path(@conn, :show, medicamento), class: "btn btn-primary" %></span>
-        <span><%= link "Editar", to: Routes.medicamento_path(@conn, :edit, medicamento), class: "btn btn-primary" %></span>
-        <span><%= link "Borrar", to: Routes.medicamento_path(@conn, :delete, medicamento), class: "btn btn-danger", method: :delete, data: [confirm: "Esta seguro?"] %></span>
+        <span><%= link "Mostrar", to: Routes.medicamento_path(@conn, :show, medicamento), class: "btn btn-primary btn-sm" %></span>
+        <span><%= link "Editar", to: Routes.medicamento_path(@conn, :edit, medicamento), class: "btn btn-primary btn-sm" %></span>
+        <span><%= link "Borrar", to: Routes.medicamento_path(@conn, :delete, medicamento), class: "btn btn-danger btn-sm", method: :delete, data: [confirm: "Esta seguro?"] %></span>
       </td>
     </tr>
 <% end %>
