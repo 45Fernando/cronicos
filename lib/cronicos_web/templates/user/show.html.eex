@@ -21,31 +21,32 @@
       </table>
 
       <span><%= link "Editar", to: Routes.user_path(@conn, :edit, @user), class: "btn btn-primary" %></span>
-      <!-- <span><%= link "Agregar Cronico", to: Routes.pedido_path(@conn, :new, user_name: @user.name), class: "btn btn-primary" %></span> -->
       <span><%= link "Volver", to: Routes.user_path(@conn, :index), class: "btn btn-secondary" %></span>
   </div>
-  <div class="col">
-    <h3>Agregar Cronico</h3>
-    <%= form_for @conn, Routes.pedido_path(@conn, :create), [ method: :post] , fn f ->%>
-      <%= hidden_input f, :user_id, value: @user.id %>
-      
-      <%= select f, :medicamento_id, @medicamentos, class: "form-control form-control-sm" %>
-      
+  <%= if Pow.Plug.current_user(@conn).role == "auditor" do %>
+    <div class="col">
+      <h3>Agregar Cronico</h3>
+      <%= form_for @conn, Routes.pedido_path(@conn, :create), [ method: :post] , fn f ->%>
+        <%= hidden_input f, :user_id, value: @user.id %>
+        
+        <%= select f, :medicamento_id, @medicamentos, class: "form-control form-control-sm" %>
+        
 
-      <div class="form-group">
-        <%= label f, :posologia %>
-        <%= text_input f, :posologia, class: "form-control form-control-sm" %>
-        <%= error_tag f, :posologia %>
-      </div>
+        <div class="form-group">
+          <%= label f, :posologia %>
+          <%= text_input f, :posologia, class: "form-control form-control-sm" %>
+          <%= error_tag f, :posologia %>
+        </div>
 
-      <div class="form-group">
-        <%= label f, :porcentaje %>
-        <%= text_input f, :porcentaje, class: "form-control form-control-sm" %>
-        <%= error_tag f, :porcentaje %>
-      </div>
-        <%= submit "Agregar Cronico", class: "btn btn-primary btn-sm" %>    
-    <% end%> 
-  </div>
+        <div class="form-group">
+          <%= label f, :porcentaje %>
+          <%= text_input f, :porcentaje, class: "form-control form-control-sm" %>
+          <%= error_tag f, :porcentaje %>
+        </div>
+          <%= submit "Agregar Cronico", class: "btn btn-primary btn-sm" %>    
+      <% end%> 
+    </div>
+  <% end %>
 </div>
 <div class="row">
   <div class="col">
@@ -76,7 +77,11 @@
           </td>     
 
           <td>
-            <span><%= link "Borrar", to: Routes.pedido_path(@conn, :delete, pedido), class: "btn btn-danger btn-sm", method: :delete, data: [confirm: "Esta seguro?"] %></span>
+            <%= if Pow.Plug.current_user(@conn).role == "auditor" do %>
+              <span><%= link "Borrar", to: Routes.pedido_path(@conn, :delete, pedido), class: "btn btn-danger btn-sm", method: :delete, data: [confirm: "Esta seguro?"] %></span>
+            <% else %>
+              <span><%= link "Retiro", to: Routes.pedido_path(@conn, :update, pedido, [retirado: true, user_id: @user.id]), class: "btn btn-outline-secondary btn-sm", method: :put%></span>
+            <% end %>
           </td> 
         </tr>
       <% end %>

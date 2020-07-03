@@ -39,14 +39,14 @@ defmodule CronicosWeb.PedidoController do
     render(conn, "edit.html", pedido: pedido, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "pedido" => pedido_params}) do
-    pedido = Pedidos.get_pedido!(id)
+  def update(conn, pedido_params) do
+    pedido = Pedidos.get_pedido!(pedido_params["id"])
 
     case Pedidos.update_pedido(pedido, pedido_params) do
       {:ok, pedido} ->
         conn
-        |> put_flash(:info, "Cronico updated successfully.")
-        |> redirect(to: Routes.pedido_path(conn, :show, pedido))
+        |> put_flash(:info, "Cronico actualizado exitosamente.")
+        |> redirect(to: Routes.user_path(conn, :show, pedido.user_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", pedido: pedido, changeset: changeset)

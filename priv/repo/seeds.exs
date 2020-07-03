@@ -29,11 +29,6 @@ users_data = [
     email: "expendor@example.org.ar",
     password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("123456789"),
     role: "expendedor"
-  },
-  %User{
-    email: "user@example.org.ar",
-    password_hash: Pow.Ecto.Schema.Password.pbkdf2_hash("123456789"),
-    role: "user"
   }
 ]
 

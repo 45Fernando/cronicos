@@ -19,7 +19,7 @@ defmodule Cronicos.Users.User do
   @attrs_cast ~w(name dni plan observation)a
   @attrs_cast_require ~w(name dni)a
 
-  @attrs_cast_auditor ~w(name dni plan observation)a
+  @attrs_cast_auditor ~w(name dni plan observation email)a
   @attrs_cast_require_auditor ~w(name dni)a
 
   def changeset(user, attrs) do

@@ -26,9 +26,11 @@
               <li class="nav-item">
                 <%= link "Afiliados", to: Routes.user_path(@conn, :index), class: "nav-link" %>
               </li>
-              <li class="nav-item">
-                <%= link "Medicamentos", to: Routes.medicamento_path(@conn, :index), class: "nav-link" %>
-              </li>
+              <%= if Pow.Plug.current_user(@conn).role == "auditor" do %>
+                <li class="nav-item">
+                  <%= link "Medicamentos", to: Routes.medicamento_path(@conn, :index), class: "nav-link" %>
+                </li>
+              <% end %>
               <!--
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,13 +46,14 @@
               -->
             </ul>
 
-            <!-- busqueda -->
+            <!-- busqueda 
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Usuario" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
             </form>
-            <br>           
-
+            <br>     
+            -->      
+            
             <!-- Para desloguearse -->
             <%= if Pow.Plug.current_user(@conn) do %>
               <span><%= link "Salir", to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "btn btn-primary mx-2" %></span>

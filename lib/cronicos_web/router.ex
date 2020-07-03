@@ -25,6 +25,14 @@ defmodule CronicosWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :expendedor do
+    plug Cronicos.EnsureRolePlug, :expendedor
+  end
+
+  pipeline :auditor do
+    plug Cronicos.EnsureRolePlug, :auditor
+  end
+
   pipeline :admin do
     plug Cronicos.EnsureRolePlug, :admin
   end
@@ -41,7 +49,17 @@ defmodule CronicosWeb.Router do
     get "/", PageController, :index
     resources "/medicamentos", MedicamentoController
     resources "/users", UserController
-    resources "/pedidos", PedidoController
+    resources "/pedidos", PedidoController, only: [:create, :update, :delete]
+  end
+
+  scope "/expendedor", CronicosWeb do
+    pipe_through [:browser, :protected, :expendedor]
+
+  end
+
+  scope "/auditor", CronicosWeb do
+    pipe_through [:browser, :protected, :auditor]
+
   end
 
   scope "/", Pow.Phoenix, as: "pow" do

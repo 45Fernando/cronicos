@@ -17,6 +17,13 @@ defmodule Cronicos.Users do
     Repo.all(User)
   end
 
+  def list_usuarios do
+    query = from u in User,
+     where: u.role == "user"
+
+     Repo.all(query)
+  end
+
 
   @doc """
   Gets a single user.

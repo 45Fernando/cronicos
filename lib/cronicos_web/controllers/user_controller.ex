@@ -5,7 +5,7 @@ defmodule CronicosWeb.UserController do
   alias Cronicos.Users.User
 
   def index(conn, _params) do
-    users = Users.list_users()
+    users = Users.list_usuarios()
     render(conn, "index.html", users: users)
   end
 
@@ -37,6 +37,7 @@ defmodule CronicosWeb.UserController do
     user = Users.get_user!(id)
     render(conn, "show.html", user: user, medicamentos: medicamentos, pedidos: pedidos)
   end
+
 
   def edit(conn, %{"id" => id}) do
     user = Users.get_user!(id)

@@ -15,5 +15,6 @@ defmodule Cronicos.Repo.Migrations.CreateUsers do
     end
 
     create unique_index(:users, [:email])
+    create_unique_index(:users, [:dni])
   end
 end

@@ -9,7 +9,6 @@
       <th>Nombre</th>
       <th>Correo</th>
       <th>DNI</th>
-      <th>Rol</th>
       <th>Plan</th>
       <th>Observacion</th>
 
@@ -22,7 +21,6 @@
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.dni %></td>
-      <td><%= user.role %></td>
       <td><%= user.plan %></td>
       <td><%= user.observation %></td>
 
